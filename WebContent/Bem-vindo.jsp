@@ -30,7 +30,7 @@
 
     <main class="container">
         <h1>Seja Bem-Vindo!</h1>
-        <h2>Auxiliamos na administraÃ§Ã£o de suas tarefas</h2>
+        <h2>Auxiliamos na administração de suas tarefas</h2>
         <h3>FaÃ§a login para ter acesso as nossas funcionalidades</h3>
         <div class="animated-cards">
         	<div class="card-1">

@@ -17,7 +17,7 @@
     <div class="container-css">
         <div class="logo">
             <p>Seja Bem-Vindo!</p>
-            <h2>Fa√ßa sua inscri√ß√£o</h2>
+            <h2>FaÁa sua inscriÁ„o</h2>
         </div>
 	
         <div class="login">
@@ -29,7 +29,7 @@
                     <label for="">Senha:</label><br>
                     <input type="password" name="senha" id="" required="required">
                     <input type="hidden" name="action" value="Inscricao">
-                    <a href="/gerenciamento_de_projetos/entrada?action=Logar">j√° possuo uma conta</a>
+                    <a href="/gerenciamento_de_projetos/entrada?action=Logar">J· possuo uma conta</a>
                     <input type="submit">
             </form>
         </div>
