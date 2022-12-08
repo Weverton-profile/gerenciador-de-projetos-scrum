@@ -23,7 +23,8 @@ public class UsuarioDAO {
 			
 			pstm.setString(1, email);
 			pstm.setString(2, senha);
-      
+			pstm.execute();
+			
 			try(ResultSet rst = pstm.getResultSet()) {
 				while(rst.next()) {
 
