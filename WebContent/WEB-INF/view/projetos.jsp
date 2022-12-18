@@ -28,10 +28,27 @@
     </header>
 	<h1 class="titulo">Seus Projetos</h1>
 	<div class="add-projeto">
-		<a href="" class="btn-add-projeto">Adicionar novos Projetos</a>
+		<a href="/gerenciador-de-projetos-scrum/entrada?action=NovoProjeto" class="btn-add-projeto">Adicionar novos Projetos</a>
 	</div>
     <main class="container-1">
 		<ul>
+			<c:forEach items="${projetos}" var="projeto">
+				<c:forEach items="${membrosDoProjeto}" var="membroProjeto">
+					<c:if test="${projeto.getId() == membroProjeto.getId_projeto()}">
+						<c:if test="${projeto.getGerente_id() == idUsuario || membroProjeto.getId_membro() == idUsuario }">
+							<li class="cards">
+								<h4>${projeto.getNome()}</h4>
+								<p>${projeto.getDescricao()}</p>
+								<p>Status: ${projeto.getAndamento()}</p>
+								<a href="/gerenciador-de-projetos-scrum/entrada?action=VerTarefa&id=${projeto.getId()}">Ver mais...</a>
+								<c:if test="${projeto.getGerente_id() == idUsuario}">
+									<a href="">Excluir</a>
+								</c:if>
+							</li>
+						</c:if>
+					</c:if>
+				</c:forEach>
+			</c:forEach>
 		</ul>
     </main>
     
