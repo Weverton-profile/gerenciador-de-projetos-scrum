@@ -64,4 +64,14 @@ public class ProjetoDAO {
         }
         return projeto;
     }
+
+    public void excluirProjeto(Integer id) throws SQLException {
+
+        String sql = "call deletar_projeto(?)";
+        try(PreparedStatement pstm = con.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS)) {
+            
+            pstm.setInt(1, id);
+            pstm.execute();
+        }   
+    }
 }
