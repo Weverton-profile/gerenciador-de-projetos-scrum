@@ -64,7 +64,7 @@ public class ProjetoDAO {
         }
         return projeto;
     }
-    
+
     public void excluirProjeto(Integer id) throws SQLException {
 
         String sql = "call deletar_projeto(?)";
