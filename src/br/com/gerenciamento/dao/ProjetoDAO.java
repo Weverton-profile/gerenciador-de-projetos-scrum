@@ -29,12 +29,13 @@ public class ProjetoDAO {
         }
     }
     
-    public List<Projeto> listar() throws SQLException {
+    public List<Projeto> listar(Integer id) throws SQLException {
         List<Projeto> projetos = new ArrayList<>();
         
-        String sql = "SELECT * FROM PROJETO";
+        String sql = "SELECT id, nome, descricao, gerente_id, andamento FROM projeto p left join membros_projeto mp on (p.id = mp.id_projeto) WHERE membros_id = ?;";
         
         try(PreparedStatement pstm = con.prepareStatement(sql)) {
+            pstm.setInt(1, id);
             pstm.execute();
             
             try(ResultSet rst = pstm.getResultSet()) {

@@ -40,7 +40,7 @@
 								<h4>${projeto.getNome()}</h4>
 								<p>${projeto.getDescricao()}</p>
 								<p>Status: ${projeto.getAndamento()}</p>
-                <a href="/gerenciador-de-projetos-scrum/entrada?action=VerTarefa&id=${projeto.getId()}">Ver mais...</a>
+                				<a href="/gerenciador-de-projetos-scrum/entrada?action=VerTarefa&id=${projeto.getId()}">Ver mais...</a>
 								<c:if test="${projeto.getGerente_id() == idUsuario}">
 									<a href="/gerenciador-de-projetos-scrum/entrada?action=ExcluirProjeto&id=${projeto.getId()}">Excluir</a>
 								</c:if>

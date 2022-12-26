@@ -22,9 +22,9 @@ public class Projetos implements Acao {
         try (Connection con = new ConnectionFactory().recuperarConexao()) {
             ProjetoDAO projetoDao = new ProjetoDAO(con);
             MembrosProjetoDAO membrosProjetoDao = new MembrosProjetoDAO(con);
-            List<Projeto> listaDeProjetos = projetoDao.listar();
             HttpSession sessao = req.getSession();
             Integer id = (Integer) sessao.getAttribute("idUsuario");
+            List<Projeto> listaDeProjetos = projetoDao.listar(id);
             List<MembrosProjeto> membrosDoProjeto = membrosProjetoDao.membrosProjeto(id);
             req.setAttribute("idUsuario", id);
             req.setAttribute("projetos", listaDeProjetos);
