@@ -30,24 +30,18 @@
 	<div class="add-projeto">
 	  <a href="/gerenciador-de-projetos-scrum/entrada?action=NovoProjeto" class="btn-add-projeto">Adicionar novos Projetos</a>
 	</div>
-  <main class="container-1">
-	  <ul>
+  	<main class="container-1">
+		<ul>
 			<c:forEach items="${projetos}" var="projeto">
-				<c:forEach items="${membrosDoProjeto}" var="membroProjeto">
-					<c:if test="${projeto.getId() == membroProjeto.getId_projeto()}">
-						<c:if test="${projeto.getGerente_id() == idUsuario || membroProjeto.getId_membro() == idUsuario }">
-							<li class="cards">
-								<h4>${projeto.getNome()}</h4>
-								<p>${projeto.getDescricao()}</p>
-								<p>Status: ${projeto.getAndamento()}</p>
-                				<a href="/gerenciador-de-projetos-scrum/entrada?action=VerTarefa&id=${projeto.getId()}">Ver mais...</a>
-								<c:if test="${projeto.getGerente_id() == idUsuario}">
-									<a href="/gerenciador-de-projetos-scrum/entrada?action=ExcluirProjeto&id=${projeto.getId()}">Excluir</a>
-								</c:if>
-							</li>
-						</c:if>
+				<li class="cards">
+					<h4>${projeto.getNome()}</h4>
+					<p>${projeto.getDescricao()}</p>
+					<p>Status: ${projeto.getAndamento()}</p>
+                	<a href="/gerenciador-de-projetos-scrum/entrada?action=VerTarefa&id=${projeto.getId()}">Ver mais...</a>
+					<c:if test="${projeto.getGerente_id() == idUsuario}">
+						<a href="/gerenciador-de-projetos-scrum/entrada?action=ExcluirProjeto&id=${projeto.getId()}">Excluir</a>
 					</c:if>
-				</c:forEach>
+				</li>
 			</c:forEach>
 		</ul>
   </main>
