@@ -56,4 +56,15 @@ public class MembrosProjetoDAO {
         }
         return membrosProjeto;
     }
+    
+    public void adicionarMembro(String idProjeto, String usuarioId) throws SQLException {
+        String sql = "INSERT INTO membros_projeto (id_projeto, membros_id) VALUES (?, ?);";
+        try(PreparedStatement pstm = con.prepareStatement(sql)) {
+            
+            pstm.setString(1, idProjeto);
+            pstm.setString(2, usuarioId);
+            
+            pstm.execute();
+        }
+    }
 }

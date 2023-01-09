@@ -165,20 +165,6 @@ html, body {
 	justify-content: flex-end;
 }
 
-.avanco {
-	background: linear-gradient(-45deg, #8470FF, #7B68EE, #6A5ACD);
-	padding: 5px;
-	border-radius: 20px;
-	color: #ffffff;
-	text-decoration: none;
-	margin-right: 10px;
-}
-
-.avanco:hover {
-	text-decoration: none;	
-	color: #BEBEBE;
-}
-
 .excluir {
 	font-size: 1.5em;
 	color: red;
@@ -203,7 +189,8 @@ html, body {
 	justify-content: space-between;
 	flex-direction: row;
 	width: 60%;
-	background: linear-gradient(#B0E0E6, #ADD8E6, #B0C4DE);
+	background: linear-gradient(-45deg, #8470FF, #7B68EE, #6A5ACD);
+	color: #ffffff;
 	margin-bottom: 10px;
 }
 
