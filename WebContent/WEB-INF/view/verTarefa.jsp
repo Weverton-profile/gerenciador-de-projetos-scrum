@@ -63,7 +63,7 @@
 						<div>
 							${tarefa.getNome()} | ${tarefa.getTempo()}H estimado
 							<div class="links">
-								<a class="avanco" href="">FAZENDO</a>
+								<a class="avanco" href="entrada?action=AtualizarTarefa&status=Fazendo&idTarefa=${tarefa.getId() }&idProjeto=${projeto.getId()}">FAZENDO</a>
 								<c:if test="${projeto.getGerente_id() == idUsuario}">
 									<a href="entrada?action=ExcluirTarefa&andamento=${tarefa.getAndamento() }&idTarefa=${tarefa.getId() }&idProjeto=${projeto.getId()}"><i class="excluir fa-solid fa-trash"></i></a>
 								</c:if>
@@ -78,10 +78,10 @@
 				<c:if test="${tarefa.getAndamento().equals('FAZENDO')}">
 					<div class="card">
 						<div>
-							${tarefa.getNome()}
+							${tarefa.getNome()} | ${tarefa.getTempo()}H estimado
 							<div class="links">
 								<c:if test="${tarefa.getMembro_id() == idUsuario}">
-									<a class="avanco" href="">FEITO</a>
+									<a class="avanco" href="entrada?action=AtualizarTarefa&status=Feito&idTarefa=${tarefa.getId() }&idProjeto=${projeto.getId()}">FEITO</a>
 								</c:if>
 								<c:if test="${projeto.getGerente_id() == idUsuario}">
 									<a href="entrada?action=ExcluirTarefa&andamento=${tarefa.getAndamento() }&idTarefa=${tarefa.getId()}&idProjeto=${projeto.getId()}"><i class="excluir fa-solid fa-trash"></i></a>
@@ -97,7 +97,8 @@
 				<c:if test="${tarefa.getAndamento().equals('FEITO')}">
 					<div class="card">
 						<div>
-							${tarefa.getNome()}
+							${tarefa.getNome()} | ${tarefa.getTempo()}H estimado |
+							${tarefa.tempoReal()}h tempo real
 							<div class="links">
 								<i class="feito fa-solid fa-circle-check"></i>
 							</div>
