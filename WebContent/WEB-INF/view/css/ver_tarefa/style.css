@@ -80,6 +80,24 @@ html, body {
 	border: 2px solid #000000;
 }
 
+.opcoes-projeto {
+	display: flex;
+	flex-direction: row-reverse;
+}
+
+.opcoes-projeto-btn {
+	padding: 10px;
+	border-radius: 20px;
+	background: linear-gradient(-45deg, #8470FF, #7B68EE, #6A5ACD);
+	margin-right: 10px;
+	color: #ffffff;
+}
+
+.opcoes-projeto-btn:hover {
+	text-decoration: none;
+	color: #BEBEBE;	
+}
+
 .titulo {
 	text-align: center;
 	font-family: 'Open Sans', 'Roboto', 'Montserrat';
@@ -165,6 +183,20 @@ html, body {
 	justify-content: flex-end;
 }
 
+.avanco {
+	background: linear-gradient(-45deg, #8470FF, #7B68EE, #6A5ACD);
+	padding: 5px;
+	border-radius: 20px;
+	color: #ffffff;
+	text-decoration: none;
+	margin-right: 10px;
+}
+
+.avanco:hover {
+	text-decoration: none;
+	color: #BEBEBE;
+}
+
 .excluir {
 	font-size: 1.5em;
 	color: red;
@@ -207,6 +239,9 @@ html, body {
 }
 
 @media only screen and (max-width: 626px) {
+	.opcoes-projeto {
+		justify-content: center;
+	}
 	.opcoes-gerente form {
 		text-align: center;
 	}

@@ -39,6 +39,10 @@
 			</form>
 		</div>
 	</c:if>
+	<div class="opcoes-projeto">
+		<a href="" class="opcoes-projeto-btn">Finalizar Projeto</a>
+		<a href="" class="opcoes-projeto-btn">Relatorio <i class="fa-solid fa-file-pdf"></i></a>
+	</div>
 	<h1 class="titulo">${projeto.getNome()}</h1>
 	<div class="container-1">
 		<div class="todo">
@@ -47,28 +51,80 @@
 						<label for="nomeTarefa">Nova Tarefa:</label>
 						<input type="text" name="nomeTarefa" id="" required="required"><br>
 						<label for="nomeTarefa">Tempo da Tarefa:</label>
+						<input type="hidden" name="action" value="NovaTarefa">
 						<input type="number" name="tempoTarefa" id="" required="required">
 						<input type="hidden" name="idProjeto" value="${projeto.getId() }">
 						<input type="submit">
 					</form>
 			</c:if>
-		</div>
-		<div class="doing">
-		</div>
-		<div class="done">
-		</div>
-	</div>
-	<h4 class="titulo">Membros do Projeto:</h4>
-	<c:if test="${projeto.getGerente_id() == idUsuario}">
-	    <div class="membros">
-			<c:forEach items="${usuarios}" var="usuario">
-				<c:if test="${usuario.getId() != idUsuario}">
-					<div class="card-membro">
-						<span>${usuario.getNomeUsuario()}</span> - <span>${usuario.getEmail()}</span> - <a href="entrada?action=ExcluirDoProjeto&idProjeto=${idProjeto}&usuarioId=${usuario.getId()}"><i class="excluir fa-solid fa-trash"></i></a>
+			<c:forEach items="${tarefas}" var="tarefa">
+				<c:if test="${tarefa.getAndamento().equals('PARA FAZER')}">
+					<div class="card">
+						<div>
+							${tarefa.getNome()} | ${tarefa.getTempo()}H estimado
+							<div class="links">
+								<a class="avanco" href="">FAZENDO</a>
+								<c:if test="${projeto.getGerente_id() == idUsuario}">
+									<a href="entrada?action=ExcluirTarefa&andamento=${tarefa.getAndamento() }&idTarefa=${tarefa.getId() }&idProjeto=${projeto.getId()}"><i class="excluir fa-solid fa-trash"></i></a>
+								</c:if>
+							</div>
+						</div>
 					</div>
 				</c:if>
 			</c:forEach>
 		</div>
-    </c:if>
+		<div class="doing">
+			<c:forEach items="${tarefas}" var="tarefa">
+				<c:if test="${tarefa.getAndamento().equals('FAZENDO')}">
+					<div class="card">
+						<div>
+							${tarefa.getNome()}
+							<div class="links">
+								<c:if test="${tarefa.getMembro_id() == idUsuario}">
+									<a class="avanco" href="">FEITO</a>
+								</c:if>
+								<c:if test="${projeto.getGerente_id() == idUsuario}">
+									<a href="entrada?action=ExcluirTarefa&andamento=${tarefa.getAndamento() }&idTarefa=${tarefa.getId()}&idProjeto=${projeto.getId()}"><i class="excluir fa-solid fa-trash"></i></a>
+								</c:if>
+							</div>
+						</div>
+					</div>
+				</c:if>
+			</c:forEach>
+		</div>
+		<div class="done">
+			<c:forEach items="${tarefas}" var="tarefa">
+				<c:if test="${tarefa.getAndamento().equals('FEITO')}">
+					<div class="card">
+						<div>
+							${tarefa.getNome()}
+							<div class="links">
+								<i class="feito fa-solid fa-circle-check"></i>
+							</div>
+						</div>
+					</div>
+				</c:if>
+			</c:forEach>
+		</div>
+	</div>
+	<h4 class="titulo">Membros do Projeto:</h4>
+	<div class="membros">
+		<c:forEach items="${usuarios}" var="usuario">
+			<c:if test="${usuario.getId() != idUsuario}">
+				<div class="card-membro">
+					<c:if test="${usuario.getId() == projeto.getGerente_id()}">
+						<span>Administrador : ${usuario.getNomeUsuario()}</span> 
+					</c:if>
+					<c:if test="${usuario.getId() != projeto.getGerente_id()}">
+						<span>${usuario.getNomeUsuario()}</span>
+					</c:if>
+					 - <span>${usuario.getEmail()}</span> 
+					<c:if test="${projeto.getGerente_id() == idUsuario}">
+						- <a href="entrada?action=ExcluirDoProjeto&idProjeto=${idProjeto}&usuarioId=${usuario.getId()}"><i class="excluir fa-solid fa-trash"></i></a>
+					</c:if>
+				</div>
+			</c:if>
+		</c:forEach>
+	</div>
 </body>
 </html>
