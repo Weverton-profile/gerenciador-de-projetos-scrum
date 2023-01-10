@@ -106,7 +106,6 @@
 				<c:if test="${tarefa.getAndamento().equals('FEITO')}">
 					<div class="card">
 						<div>
-							
 							<c:if test="${tarefa.tempoReal() > tarefa.getTempo()}">
 								<span>${tarefa.getNome()} | ${tarefa.getTempo()}H estimado | <span style="color: red;">${tarefa.tempoReal()}h tempo real</span></span>
 							</c:if>
