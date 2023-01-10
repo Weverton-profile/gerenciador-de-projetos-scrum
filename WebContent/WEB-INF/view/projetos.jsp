@@ -39,7 +39,12 @@
 					<p>Status: ${projeto.getAndamento()}</p>
                 	<a href="/gerenciador-de-projetos-scrum/entrada?action=VerTarefa&id=${projeto.getId()}">Ver mais...</a>
 					<c:if test="${projeto.getGerente_id() == idUsuario}">
-						<a href="/gerenciador-de-projetos-scrum/entrada?action=ExcluirProjeto&id=${projeto.getId()}">Excluir</a>
+						<c:if test="${projeto.getAndamento().equals('EM ANDAMENTO')}">
+							<a href="/gerenciador-de-projetos-scrum/entrada?action=ExcluirProjeto&id=${projeto.getId()}">Excluir</a>
+						</c:if>
+						<c:if test="${projeto.getAndamento().equals('FINALIZADO')}">
+							<a style="background-color: #00FF7F; color: #ffffff;" href="/gerenciador-de-projetos-scrum/entrada?action=AtualizarProjeto&idProjeto=${projeto.getId() }&andamento=${projeto.getAndamento()}&id=${projeto.getGerente_id()}">REABRIR PROJETO</a>
+						</c:if>
 					</c:if>
 				</li>
 			</c:forEach>

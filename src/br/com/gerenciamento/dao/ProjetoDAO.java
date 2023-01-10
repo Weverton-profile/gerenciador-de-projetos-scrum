@@ -84,5 +84,15 @@ public class ProjetoDAO {
             pstm.setInt(2, idProjeto);
             pstm.execute();
         }   
+    }
+
+    public void atualizarProjeto(Integer idP, String andamento) throws SQLException {
+        String sql = "UPDATE projeto SET andamento = ? WHERE id = ?;";
+        try(PreparedStatement pstm = con.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS)) {
+            
+            pstm.setString(1, andamento);
+            pstm.setInt(2, idP);
+            pstm.execute();
+        }
     }   
 }

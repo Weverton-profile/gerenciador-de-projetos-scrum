@@ -3,6 +3,7 @@ package br.com.gerenciamento.actions;
 import java.io.IOException;
 import java.sql.Connection;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.ServletException;
@@ -35,8 +36,13 @@ public class VerTarefa implements Acao {
 			
 			List<Integer> membros_id = membrosProjetoDAO.buscarMembros(id);
 			List<Tarefa> tarefas = tarefaDao.buscarTarefas(id);
+			List<String> andamento = new ArrayList<>();
+			for (Tarefa tarefa : tarefas) {
+                andamento.add(tarefa.getAndamento());
+            }
 			if(membros_id.contains(sessao.getAttribute("idUsuario"))) {
 				Projeto projeto = projetoDao.buscarPorId(id);
+				req.setAttribute("andamentos", andamento);
 				req.setAttribute("tarefas", tarefas);
 				req.setAttribute("projeto", projeto);
 				req.setAttribute("idProjeto", paramId);

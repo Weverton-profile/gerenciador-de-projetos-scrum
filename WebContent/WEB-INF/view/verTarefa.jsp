@@ -40,7 +40,16 @@
 		</div>
 	</c:if>
 	<div class="opcoes-projeto">
-		<a href="" class="opcoes-projeto-btn">Finalizar Projeto</a>
+		<c:if test="${projeto.getGerente_id() == idUsuario}">
+			<c:choose>
+			  <c:when test="${andamentos.contains('PRA FAZER') || andamentos.contains('FAZENDO')}">
+			    <a href="" style="pointer-events: none;" class="opcoes-projeto-btn">${projeto.getAndamento()}</a>
+			  </c:when>
+			  <c:otherwise>
+			    <a href="entrada?action=AtualizarProjeto&idProjeto=${projeto.getId() }&andamento=${projeto.getAndamento()}&id=${projeto.getGerente_id()}" class="opcoes-projeto-btn">FINALIZAR PROJETO</a>
+			  </c:otherwise>
+			</c:choose>
+		</c:if>
 		<a href="" class="opcoes-projeto-btn">Relatorio <i class="fa-solid fa-file-pdf"></i></a>
 	</div>
 	<h1 class="titulo">${projeto.getNome()}</h1>
@@ -97,8 +106,12 @@
 				<c:if test="${tarefa.getAndamento().equals('FEITO')}">
 					<div class="card">
 						<div>
-							${tarefa.getNome()} | ${tarefa.getTempo()}H estimado |
-							${tarefa.tempoReal()}h tempo real
+							<c:if test="${tarefa.tempoReal() > tarefa.getTempo()}">
+								<span>${tarefa.getNome()} | ${tarefa.getTempo()}H estimado | <span style="color: red;">${tarefa.tempoReal()}h tempo real</span></span>
+							</c:if>
+							<c:if test="${tarefa.tempoReal() < tarefa.getTempo()}">
+								<span>${tarefa.getNome()} | ${tarefa.getTempo()}H estimado | <span style="color: #00FF7F;">${tarefa.tempoReal()}h tempo real</span></span>
+							</c:if>
 							<div class="links">
 								<i class="feito fa-solid fa-circle-check"></i>
 							</div>
