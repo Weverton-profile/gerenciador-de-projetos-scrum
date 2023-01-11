@@ -50,7 +50,7 @@
 			  </c:otherwise>
 			</c:choose>
 		</c:if>
-		<a href="" class="opcoes-projeto-btn">Relatorio <i class="fa-solid fa-file-pdf"></i></a>
+		<a href="entrada?action=GerarRelatorio&idProjeto=${projeto.getId() }" target="_blank" class="opcoes-projeto-btn">Relatorio <i class="fa-solid fa-file-pdf"></i></a>
 	</div>
 	<h1 class="titulo">${projeto.getNome()}</h1>
 	<div class="container-1">
